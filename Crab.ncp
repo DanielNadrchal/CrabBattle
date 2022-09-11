@@ -1,0 +1,341 @@
+<Project>
+  <Name>Crab</Name>
+  <ProjectItem type="NClass.DiagramEditor.ClassDiagram.Diagram" assembly="NClass.DiagramEditor, Version=2.4.1823.0, Culture=neutral, PublicKeyToken=null">
+    <Name>Untitled</Name>
+    <Language>CSharp</Language>
+    <Entities />
+    <Relationships />
+  </ProjectItem>
+  <ProjectItem type="NClass.DiagramEditor.ClassDiagram.Diagram" assembly="NClass.DiagramEditor, Version=2.4.1823.0, Culture=neutral, PublicKeyToken=null">
+    <Name>ClassLibrary1.dll</Name>
+    <Language>CSharp</Language>
+    <Entities>
+      <Entity type="Class">
+        <Name>Sprite</Name>
+        <Access>Public</Access>
+        <Location left="510" top="186" />
+        <Size width="162" height="216" />
+        <Collapsed>False</Collapsed>
+        <Member type="Property">public Texture2D Image { get; set; }</Member>
+        <Member type="Property">public Rectangle Rectangle { get; set; }</Member>
+        <Member type="Property">public Boolean Visible { get; set; }</Member>
+        <Member type="Constructor">public Sprite(Texture2D image)</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>Crab</Name>
+        <Access>Public</Access>
+        <Location left="726" top="234" />
+        <Size width="162" height="247" />
+        <Collapsed>False</Collapsed>
+        <Member type="Field">public Double lastTimeShot</Member>
+        <Member type="Field">public Boolean IsAlive</Member>
+        <Member type="Field">public static Texture2D ReadyImage</Member>
+        <Member type="Field">public static Texture2D StandbyImage</Member>
+        <Member type="Field">public static Texture2D DeadImage</Member>
+        <Member type="Constructor">public Crab()</Member>
+        <Member type="Method">public Boolean CanShoot(GameTime time)</Member>
+        <Member type="Method">public Void HasShot(GameTime time)</Member>
+        <Member type="Method">public Void Die()</Member>
+        <Member type="Method">public Void ResetShot()</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>Timer</Name>
+        <Access>Internal</Access>
+        <Location left="32" top="544" />
+        <Size width="162" height="216" />
+        <Collapsed>False</Collapsed>
+        <Member type="Field">private Double lastTime</Member>
+        <Member type="Field">private Double CountTime</Member>
+        <Member type="Field">private Double randomTime</Member>
+        <Member type="Field">private Random random</Member>
+        <Member type="Constructor">public Timer(Double countTime, Random Random)</Member>
+        <Member type="Method">public Boolean Ready(GameTime time)</Member>
+        <Member type="Method">private Double ShortestRespawnTime()</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>CrabBattleGame</Name>
+        <Access>Public</Access>
+        <Location left="43" top="48" />
+        <Size width="162" height="281" />
+        <Collapsed>False</Collapsed>
+        <Member type="Field">private GraphicsDeviceManager graphics</Member>
+        <Member type="Field">private SpriteBatch spriteBatch</Member>
+        <Member type="Field">private World world</Member>
+        <Member type="Field">public static Int32 screenHeight</Member>
+        <Member type="Field">public static Int32 screenWidth</Member>
+        <Member type="Constructor">public CrabBattleGame()</Member>
+        <Member type="Method">protected virtual Void Initialize()</Member>
+        <Member type="Method">protected virtual Void LoadContent()</Member>
+        <Member type="Method">private Void LoadGraphicContent()</Member>
+        <Member type="Method">private Void LoadMusicContent()</Member>
+        <Member type="Method">protected virtual Void Update(GameTime gameTime)</Member>
+        <Member type="Method">protected virtual Void Draw(GameTime gameTime)</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>Enemy</Name>
+        <Access>Internal</Access>
+        <Location left="739" top="544" />
+        <Size width="162" height="315" />
+        <Collapsed>False</Collapsed>
+        <Member type="Field">private Int32 MoveRandomMax</Member>
+        <Member type="Field">private Int32 MoveSwitchThreshold</Member>
+        <Member type="Field">private Int32 ShootRandomMax</Member>
+        <Member type="Field">private Int32 ShootThreshold</Member>
+        <Member type="Field">private Direction previousMove</Member>
+        <Member type="Field">private AiType type</Member>
+        <Member type="Field">private Random Random</Member>
+        <Member type="Field">private Boolean shouldRepeat</Member>
+        <Member type="Constructor">public Enemy(Boolean lefter, Random random)</Member>
+        <Member type="Method">public Boolean WillShoot(GameTime time)</Member>
+        <Member type="Method">public Void Move()</Member>
+        <Member type="Method">public Direction Lefter()</Member>
+        <Member type="Method">public Direction Righter()</Member>
+        <Member type="Method">public Direction Center()</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>DirectionExtensions</Name>
+        <Access>Public</Access>
+        <Location left="1146" top="833" />
+        <Size width="162" height="216" />
+        <Collapsed>False</Collapsed>
+        <Member type="Method">public static Boolean IsHorizontal(Direction dir)</Member>
+        <Modifier>Static</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>MusicBox</Name>
+        <Access>Internal</Access>
+        <Location left="963" top="340" />
+        <Size width="162" height="434" />
+        <Collapsed>False</Collapsed>
+        <Member type="Field">public static Song MainSong</Member>
+        <Member type="Field">public static SoundEffectInstance ShootSound</Member>
+        <Member type="Field">public static SoundEffectInstance EnemyShootSound</Member>
+        <Member type="Field">public static SoundEffectInstance KilledSound</Member>
+        <Member type="Field">public static SoundEffectInstance RespawnSound</Member>
+        <Member type="Field">public static SoundEffectInstance EnemySpawnSound</Member>
+        <Member type="Field">public static SoundEffectInstance EscapeSound</Member>
+        <Member type="Field">public static SoundEffectInstance LevelUpSound</Member>
+        <Member type="Field">private static Boolean SongPlaying</Member>
+        <Member type="Constructor">public MusicBox()</Member>
+        <Member type="Constructor">static MusicBox()</Member>
+        <Member type="Method">public static Void ToggleSong()</Member>
+        <Member type="Method">public static Void StartSong()</Member>
+        <Member type="Method">public static Void EndSong()</Member>
+        <Member type="Method">public static Void Shoot()</Member>
+        <Member type="Method">public static Void EnemyShoot()</Member>
+        <Member type="Method">public static Void Killed()</Member>
+        <Member type="Method">public static Void Respawn()</Member>
+        <Member type="Method">public static Void EnemySpawn()</Member>
+        <Member type="Method">public static Void Escape()</Member>
+        <Member type="Method">public static Void LevelUp()</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>Player</Name>
+        <Access>Public</Access>
+        <Location left="532" top="544" />
+        <Size width="162" height="216" />
+        <Collapsed>False</Collapsed>
+        <Member type="Field">public Int32 Score</Member>
+        <Member type="Constructor">public Player()</Member>
+        <Member type="Method">public Void IncreaseScore(Int32 points)</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>Program</Name>
+        <Access>Internal</Access>
+        <Location left="1354" top="127" />
+        <Size width="162" height="216" />
+        <Collapsed>False</Collapsed>
+        <Member type="Method">private static Void Main(String[] args)</Member>
+        <Modifier>Static</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>SpriteUtil</Name>
+        <Access>Internal</Access>
+        <Location left="963" top="100" />
+        <Size width="162" height="216" />
+        <Collapsed>False</Collapsed>
+        <Member type="Field">public static Int32 SpeedMultiplier</Member>
+        <Member type="Constructor">public SpriteUtil()</Member>
+        <Member type="Constructor">static SpriteUtil()</Member>
+        <Member type="Method">public static Void MoveSprite(Sprite sprite, Int32 x, Int32 y)</Member>
+        <Member type="Method">public static Void MoveSprite(Sprite sprite, Direction direction)</Member>
+        <Member type="Method">public static Void DrawSprite(Sprite sprite, SpriteBatch batch)</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>World</Name>
+        <Access>Internal</Access>
+        <Location left="275" top="186" />
+        <Size width="162" height="757" />
+        <Collapsed>False</Collapsed>
+        <Member type="Field">public Player player</Member>
+        <Member type="Field">public Sprite bullet</Member>
+        <Member type="Field">public Sprite cave</Member>
+        <Member type="Field">public Sprite water</Member>
+        <Member type="Field">public List&lt;Enemy&gt; enemies</Member>
+        <Member type="Field">public List&lt;Enemy&gt; dieingEnemies</Member>
+        <Member type="Field">public List&lt;Enemy&gt; deadEnemies</Member>
+        <Member type="Field">public SpriteFont font</Member>
+        <Member type="Field">public Vector2 scoreFontPos</Member>
+        <Member type="Field">public Vector2 escapeFontPos</Member>
+        <Member type="Field">public Vector2 thirdFontPos</Member>
+        <Member type="Field">public Vector2 fourthFontPos</Member>
+        <Member type="Field">public List&lt;Sprite&gt; enemyBullets</Member>
+        <Member type="Field">public Int32 ScreenHeight</Member>
+        <Member type="Field">private Timer enemySpawnTimer</Member>
+        <Member type="Field">private Random random</Member>
+        <Member type="Field">public Int32 enemyPoints</Member>
+        <Member type="Field">public Double enemySpawnTime</Member>
+        <Member type="Field">private Int32 EscapeCount</Member>
+        <Member type="Field">private Int32 EnemyKilledCount</Member>
+        <Member type="Field">private Int32 EnemyKilledCountTillNextLevel</Member>
+        <Member type="Field">private Boolean lefter</Member>
+        <Member type="Field">public static Int32 Level</Member>
+        <Member type="Constructor">public World()</Member>
+        <Member type="Constructor">static World()</Member>
+        <Member type="Method">public Void DrawWorld(GameTime gameTime, SpriteBatch spriteBatch)</Member>
+        <Member type="Method">public Void UpdateWorld(GameTime time, KeyboardState keyboardState)</Member>
+        <Member type="Method">private Void RemoveDead(GameTime time)</Member>
+        <Member type="Method">private Void HandleInput(GameTime time, KeyboardState keyboardState)</Member>
+        <Member type="Method">private Void UpdateBullet(GameTime time)</Member>
+        <Member type="Method">private Void KillEnemy(Enemy enemy)</Member>
+        <Member type="Method">private Void EnemyPlot(GameTime time)</Member>
+        <Member type="Method">private Void MoveEnemies(GameTime time)</Member>
+        <Member type="Method">private Void EnemyShoot(GameTime time)</Member>
+        <Member type="Method">private Void SpawnEnemies(GameTime time)</Member>
+        <Member type="Method">private Void UpdateEnemyBullets(GameTime time)</Member>
+        <Member type="Method">private Void KillPlayer()</Member>
+        <Member type="Method">private Void RevivePlayer()</Member>
+        <Member type="Method">private Void Shoot()</Member>
+        <Member type="Method">private Int32 EnemiesKilledToNextLevel(Int32 currentLevel)</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Enum">
+        <Name>AiType</Name>
+        <Access>Public</Access>
+        <Location left="510" top="833" />
+        <Size width="162" height="216" />
+        <Collapsed>False</Collapsed>
+        <Value>Lefter = 0</Value>
+        <Value>Righter = 1</Value>
+        <Value>Center = 2</Value>
+      </Entity>
+      <Entity type="Enum">
+        <Name>Direction</Name>
+        <Access>Public</Access>
+        <Location left="949" top="833" />
+        <Size width="162" height="216" />
+        <Collapsed>False</Collapsed>
+        <Value>North = 0</Value>
+        <Value>East = 1</Value>
+        <Value>South = 2</Value>
+        <Value>West = 3</Value>
+      </Entity>
+    </Entities>
+    <Relationships>
+      <Relationship type="Nesting" first="4" second="11">
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+      </Relationship>
+      <Relationship type="Generalization" first="1" second="0">
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+      </Relationship>
+      <Relationship type="Generalization" first="4" second="1">
+        <StartOrientation>Horizontal</StartOrientation>
+        <EndOrientation>Horizontal</EndOrientation>
+      </Relationship>
+      <Relationship type="Generalization" first="7" second="1">
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+      </Relationship>
+      <Relationship type="Association" first="3" second="10">
+        <Label>
+        </Label>
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Association</AssociationType>
+        <StartRole>world</StartRole>
+        <EndMultiplicity>1</EndMultiplicity>
+      </Relationship>
+      <Relationship type="Association" first="4" second="12">
+        <Label>
+        </Label>
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Association</AssociationType>
+        <StartRole>previousMove</StartRole>
+        <EndMultiplicity>1</EndMultiplicity>
+      </Relationship>
+      <Relationship type="Association" first="4" second="11">
+        <Label>
+        </Label>
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Association</AssociationType>
+        <StartRole>type</StartRole>
+        <EndMultiplicity>1</EndMultiplicity>
+      </Relationship>
+      <Relationship type="Association" first="10" second="7">
+        <Label>
+        </Label>
+        <StartOrientation>Horizontal</StartOrientation>
+        <EndOrientation>Horizontal</EndOrientation>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Association</AssociationType>
+        <StartRole>player</StartRole>
+        <EndMultiplicity>1</EndMultiplicity>
+      </Relationship>
+      <Relationship type="Association" first="10" second="0">
+        <Label>
+        </Label>
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Association</AssociationType>
+        <StartRole>bullet</StartRole>
+        <EndMultiplicity>1</EndMultiplicity>
+      </Relationship>
+      <Relationship type="Association" first="10" second="0">
+        <Label>
+        </Label>
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Association</AssociationType>
+        <StartRole>cave</StartRole>
+        <EndMultiplicity>1</EndMultiplicity>
+      </Relationship>
+      <Relationship type="Association" first="10" second="0">
+        <Label>
+        </Label>
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Association</AssociationType>
+        <StartRole>water</StartRole>
+        <EndMultiplicity>1</EndMultiplicity>
+      </Relationship>
+      <Relationship type="Association" first="10" second="2">
+        <Label>
+        </Label>
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Association</AssociationType>
+        <StartRole>enemySpawnTimer</StartRole>
+        <EndMultiplicity>1</EndMultiplicity>
+      </Relationship>
+    </Relationships>
+  </ProjectItem>
+</Project>
