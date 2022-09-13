@@ -7,7 +7,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Input;
 
-namespace CrabBattle
+namespace CrabBattle.Sprites
 {
     public class Crab : Sprite
     {
@@ -18,7 +18,7 @@ namespace CrabBattle
         public static Texture2D StandbyImage;
         public static Texture2D DeadImage;
 
-        public Crab() : base(Crab.StandbyImage)
+        public Crab() : base(StandbyImage)
         {
             var imageBounds = Image.Bounds;
             Rectangle = new Rectangle(0, 0, imageBounds.Width / 2, imageBounds.Height / 2);

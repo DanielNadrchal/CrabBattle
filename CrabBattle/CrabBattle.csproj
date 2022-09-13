@@ -9,8 +9,11 @@
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationManifest>app.manifest</ApplicationManifest>
-    <ApplicationIcon>Icon.ico</ApplicationIcon>
+    <ApplicationIcon>Content\Icon.ico</ApplicationIcon>
   </PropertyGroup>
+  <ItemGroup>
+    <Content Include="Content\Icon.ico" />
+  </ItemGroup>
   <ItemGroup>
     <None Include="Content\CrabBattleContent.contentproj" />
   </ItemGroup>

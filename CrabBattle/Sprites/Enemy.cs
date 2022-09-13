@@ -7,7 +7,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Input;
 
-namespace CrabBattle
+namespace CrabBattle.Sprites
 {
     class Enemy : Crab
     {
@@ -16,7 +16,7 @@ namespace CrabBattle
         private int ShootRandomMax = 200;
         private int ShootThreshold = 1;
 
-        public Enemy(bool lefter, Random random): base()
+        public Enemy(bool lefter, Random random) : base()
         {
             Random = random;
 
@@ -73,7 +73,7 @@ namespace CrabBattle
         }
 
         bool shouldRepeat;
-        
+
         public Direction Lefter()
         {
             if (previousMove != Direction.South)
@@ -129,7 +129,7 @@ namespace CrabBattle
             return Direction.East;
         }
 
-        private enum AiType{Lefter, Righter, Center};
+        private enum AiType { Lefter, Righter, Center };
     }
-    
+
 }

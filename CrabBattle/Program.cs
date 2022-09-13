@@ -1,3 +1,3 @@
 ﻿
-using var game = new CrabBattle.CrabBattleGame();
+using var game = new CrabBattle.GameLogic.CrabBattleGame();
 game.Run();

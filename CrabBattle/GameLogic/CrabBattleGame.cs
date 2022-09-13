@@ -1,10 +1,11 @@
+using CrabBattle.Sprites;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 
-namespace CrabBattle
+namespace CrabBattle.GameLogic
 {
     public class CrabBattleGame : Game
     {
@@ -20,7 +21,7 @@ namespace CrabBattle
             graphics = new GraphicsDeviceManager(this);
             graphics.PreferredBackBufferHeight = 768;
             graphics.PreferredBackBufferWidth = 1024;
-            
+
             Content.RootDirectory = "Content";
         }
 
@@ -43,7 +44,7 @@ namespace CrabBattle
             screenWidth = spriteBatch.GraphicsDevice.Viewport.Width;
 
             world.ScreenHeight = screenHeight;
-            
+
             var caveTexture = Content.Load<Texture2D>("Images/Cave");
             var cave = new Sprite(caveTexture);
             SpriteUtil.MoveSprite(cave, -100, -90);
@@ -60,7 +61,7 @@ namespace CrabBattle
 
             var mPlayer = new Player();
             world.player = mPlayer;
-            
+
             SpriteUtil.MoveSprite(mPlayer, screenWidth / 2 - mPlayer.Rectangle.Center.X, screenHeight - mPlayer.Rectangle.Height - 20);
 
             var textureBullet = Content.Load<Texture2D>("Images/Bubble");
@@ -110,7 +111,7 @@ namespace CrabBattle
             soundEngineInstance = soundEngine.CreateInstance();
             soundEngineInstance.Volume = 0.4f;
             MusicBox.EnemySpawnSound = soundEngineInstance;
-            
+
             soundEngine = Content.Load<SoundEffect>("Sound\\Effects\\jump_07");
             soundEngineInstance = soundEngine.CreateInstance();
             MusicBox.EscapeSound = soundEngineInstance;
@@ -120,7 +121,6 @@ namespace CrabBattle
             MusicBox.LevelUpSound = soundEngineInstance;
 
             MusicBox.StartSong();
-            //MusicBox.EndSong();
         }
 
         protected override void Update(GameTime gameTime)
@@ -129,7 +129,7 @@ namespace CrabBattle
 
             if (keyboardState.IsKeyDown(Keys.Escape))
             {
-                this.Exit();
+                Exit();
             }
 
             if (keyboardState.IsKeyDown(Keys.RightAlt) && keyboardState.IsKeyDown(Keys.Enter))

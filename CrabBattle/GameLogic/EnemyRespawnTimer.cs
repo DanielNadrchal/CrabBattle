@@ -7,16 +7,16 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Input;
 
-namespace CrabBattle
+namespace CrabBattle.GameLogic
 {
-    class Timer
+    class EnemyRespawnTimer
     {
         private double lastTime = 0;
         private double CountTime;
         private double randomTime = 0;
         private Random random;
 
-        public Timer(double countTime, Random Random)
+        public EnemyRespawnTimer(double countTime, Random Random)
         {
             CountTime = countTime;
             random = Random;

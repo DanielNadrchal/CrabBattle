@@ -6,8 +6,9 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Input;
+using CrabBattle.Sprites;
 
-namespace CrabBattle
+namespace CrabBattle.GameLogic
 {
     class World
     {
@@ -29,12 +30,13 @@ namespace CrabBattle
         public List<Sprite> enemyBullets;
 
         public int ScreenHeight;
-        
-        private Timer enemySpawnTimer;
+
+        private EnemyRespawnTimer enemySpawnTimer;
         private Random random;
 
-        public int enemyPoints = 5;
-        public double enemySpawnTime = 1;
+        private int enemyPoints = 5;
+        private double enemySpawnTime = 1;
+        private bool nextEnemyIsLefter = true;
 
         private int EscapeCount = 0;
         private int EnemyKilledCount = 0;
@@ -45,7 +47,7 @@ namespace CrabBattle
             enemies = new List<Enemy>();
             enemyBullets = new List<Sprite>();
             random = new Random();
-            enemySpawnTimer = new Timer(enemySpawnTime, random);
+            enemySpawnTimer = new EnemyRespawnTimer(enemySpawnTime, random);
         }
 
         public void DrawWorld(GameTime gameTime, SpriteBatch spriteBatch)
@@ -127,7 +129,7 @@ namespace CrabBattle
         {
             if (!player.IsAlive)
             {
-                if (keyboardState.IsKeyDown(Keys.D1)  || keyboardState.IsKeyDown(Keys.D5) )
+                if (keyboardState.IsKeyDown(Keys.D1) || keyboardState.IsKeyDown(Keys.D5))
                 {
                     RevivePlayer();
                 }
@@ -141,11 +143,11 @@ namespace CrabBattle
             {
                 SpriteUtil.MoveSprite(player, Direction.West);
             }
-            if (keyboardState.IsKeyDown(Keys.Right)  || keyboardState.IsKeyDown(Keys.D))
+            if (keyboardState.IsKeyDown(Keys.Right) || keyboardState.IsKeyDown(Keys.D))
             {
                 SpriteUtil.MoveSprite(player, Direction.East);
             }
-            if (keyboardState.IsKeyDown(Keys.Z) || keyboardState.IsKeyDown(Keys.LeftControl) || keyboardState.IsKeyDown(Keys.W) )
+            if (keyboardState.IsKeyDown(Keys.Z) || keyboardState.IsKeyDown(Keys.LeftControl) || keyboardState.IsKeyDown(Keys.W))
             {
                 if (player.CanShoot(time))
                 {
@@ -154,7 +156,7 @@ namespace CrabBattle
                     Shoot();
                 }
             }
-            if (keyboardState.IsKeyDown(Keys.M) )
+            if (keyboardState.IsKeyDown(Keys.M))
             {
                 MusicBox.ToggleSong();
             }
@@ -189,8 +191,8 @@ namespace CrabBattle
             EnemyKilledCount++;
             if (EnemyKilledCount > EnemyKilledCountTillNextLevel)
             {
-                World.Level++;
-                EnemyKilledCountTillNextLevel = EnemiesKilledToNextLevel(World.Level);
+                Level++;
+                EnemyKilledCountTillNextLevel = EnemiesKilledToNextLevel(Level);
                 MusicBox.LevelUp();
             }
         }
@@ -204,7 +206,7 @@ namespace CrabBattle
 
         private void MoveEnemies(GameTime time)
         {
-            foreach(var enemy in enemies) 
+            foreach (var enemy in enemies)
             {
                 enemy.Move();
 
@@ -241,13 +243,12 @@ namespace CrabBattle
             }
         }
 
-        private bool lefter = true;
         private void SpawnEnemies(GameTime time)
         {
             if (enemySpawnTimer.Ready(time) || EscapeCount > 5)
             {
-                var enemy = new Enemy(lefter, random);
-                lefter = !lefter;
+                var enemy = new Enemy(nextEnemyIsLefter, random);
+                nextEnemyIsLefter = !nextEnemyIsLefter;
                 SpriteUtil.MoveSprite(enemy, CrabBattleGame.screenWidth / 2 - enemy.Rectangle.Center.X, enemy.Rectangle.Height + 20);
                 enemies.Add(enemy);
                 MusicBox.EnemySpawn();
@@ -302,8 +303,8 @@ namespace CrabBattle
             enemies.Clear();
             MusicBox.Respawn();
             EnemyKilledCount = 0;
-            World.Level = 1;
-            EnemyKilledCountTillNextLevel = EnemiesKilledToNextLevel(World.Level);
+            Level = 1;
+            EnemyKilledCountTillNextLevel = EnemiesKilledToNextLevel(Level);
         }
 
         private void Shoot()

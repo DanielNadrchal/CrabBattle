@@ -6,7 +6,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Audio;
 
-namespace CrabBattle
+namespace CrabBattle.Sprites
 {
     public class Sprite
     {
@@ -18,7 +18,7 @@ namespace CrabBattle
         {
             Image = image;
             var imageBounds = image.Bounds;
-            Rectangle = new Rectangle(0,0,imageBounds.Width, imageBounds.Height);
+            Rectangle = new Rectangle(0, 0, imageBounds.Width, imageBounds.Height);
             Visible = true;
         }
 
