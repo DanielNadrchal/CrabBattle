@@ -1,17 +1,12 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
-using Microsoft.Xna.Framework.Content;
-using Microsoft.Xna.Framework.GamerServices;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 
 namespace CrabBattle
 {
-    public class CrabBattleGame : Microsoft.Xna.Framework.Game
+    public class CrabBattleGame : Game
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
@@ -48,7 +43,7 @@ namespace CrabBattle
             screenWidth = spriteBatch.GraphicsDevice.Viewport.Width;
 
             world.ScreenHeight = screenHeight;
-
+            
             var caveTexture = Content.Load<Texture2D>("Images/Cave");
             var cave = new Sprite(caveTexture);
             SpriteUtil.MoveSprite(cave, -100, -90);
@@ -73,7 +68,7 @@ namespace CrabBattle
             bullet.Visible = false;
             world.bullet = bullet;
 
-            var font = Content.Load<SpriteFont>("Font/Default");
+            var font = Content.Load<SpriteFont>("Font/SpriteFont");
             world.font = font;
             var fontPos = new Vector2(60, 20);
             world.scoreFontPos = fontPos;
